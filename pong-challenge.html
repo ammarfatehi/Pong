@@ -91,13 +91,13 @@
                     document.addEventListener('keydown', (e) => {
                         // fill in here
 
-                        if(e.keyCode == "38"){
+                        if(e.keyCode == "38"){ //up arrow
                             if(objects.rightPaddle.y>10){
                                 objects.rightPaddle.y = objects.rightPaddle.y - 10;
                             } 
                         }
 
-                        if(e.keyCode == "40"){
+                        if(e.keyCode == "40"){ //down arrow
                             if(objects.rightPaddle.y<canvas.height - objects.rightPaddle.height){
                                 objects.rightPaddle.y = objects.rightPaddle.y + 10;
                             }
@@ -106,13 +106,13 @@
                         
 
 
-                        if(e.keyCode == "87"){
+                        if(e.keyCode == "87"){ //w key
                             if(objects.leftPaddle.y>10){
                                 objects.leftPaddle.y = objects.leftPaddle.y - 10;
                             }
                             
                         }
-                        if(e.keyCode == "83"){
+                        if(e.keyCode == "83"){ //s key
                             if(objects.leftPaddle.y<canvas.height - objects.leftPaddle.height){
                                 objects.leftPaddle.y = objects.leftPaddle.y + 10;
                             }
@@ -131,13 +131,13 @@
                     // clear canvas
                     canvas.context.clearRect(0, 0, canvas.width, canvas.height);
                     
-                    canvas.context.fillStyle = 'rgb(200, 200, 200)';
-                    canvas.context.fillRect(objects.leftPaddle.x, objects.leftPaddle.y, objects.leftPaddle.width, objects.leftPaddle.height);
-                    canvas.context.fillRect(objects.rightPaddle.x, objects.rightPaddle.y, objects.rightPaddle.width, objects.rightPaddle.height);
-                    canvas.context.fillRect(objects.ball.x, objects.ball.y, objects.ball.width, objects.ball.height);
+                    canvas.context.fillStyle = 'rgb(200, 200, 200)'; //white color
+                    canvas.context.fillRect(objects.leftPaddle.x, objects.leftPaddle.y, objects.leftPaddle.width, objects.leftPaddle.height); //draw left
+                    canvas.context.fillRect(objects.rightPaddle.x, objects.rightPaddle.y, objects.rightPaddle.width, objects.rightPaddle.height); //draw right
+                    canvas.context.fillRect(objects.ball.x, objects.ball.y, objects.ball.width, objects.ball.height); //draw ball
 
-                    objects.ball.x = objects.ball.x - objects.ball.dx;
-                    objects.ball.y = objects.ball.y - objects.ball.dy;
+                    objects.ball.x = objects.ball.x - objects.ball.dx; //update ball
+                    objects.ball.y = objects.ball.y - objects.ball.dy; 
                     // TODO: implement game loop
                     // move paddles by their velocity
                     // prevent paddles from going through walls
