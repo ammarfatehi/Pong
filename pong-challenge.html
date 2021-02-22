@@ -36,7 +36,7 @@
                 paddleSpeed: 6,
                 ballSpeed: 5,
             };
-            config.config.paddleHeight = config.gridSize * 5; // 80
+            config.paddleHeight = config.gridSize * 5; // 80
             config.maxPaddleY =
                 canvas.height - config.gridSize - config.paddleHeight;
             config.minPaddleY = config.gridSize;
@@ -72,6 +72,15 @@
                 canvas: canvas,
                 objects: objects,
                 c: (obj1, obj2) => {
+
+                    if (obj1.x < obj2.x + obj2.width &&
+                    obj1.x + obj1.width > obj2.x &&
+                    obj1.y < obj2.y + obj2.height &&
+                    obj1.y + obj1.height > obj2.y) {
+                    // collision detected!
+                        return true;
+                    }
+
                     // TODO: collision detection
                     // check for collision between two objects using axis-aligned bounding box (AABB)
                     // @see https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
@@ -81,15 +90,54 @@
                     // TODO: key listener events
                     document.addEventListener('keydown', (e) => {
                         // fill in here
+
+                        if(e.keyCode == "38"){
+                            if(objects.rightPaddle.y>10){
+                                objects.rightPaddle.y = objects.rightPaddle.y - 10;
+                            } 
+                        }
+
+                        if(e.keyCode == "40"){
+                            if(objects.rightPaddle.y<canvas.height - objects.rightPaddle.height){
+                                objects.rightPaddle.y = objects.rightPaddle.y + 10;
+                            }
+                            
+                        }
+                        
+
+
+                        if(e.keyCode == "87"){
+                            if(objects.leftPaddle.y>10){
+                                objects.leftPaddle.y = objects.leftPaddle.y - 10;
+                            }
+                            
+                        }
+                        if(e.keyCode == "83"){
+                            if(objects.leftPaddle.y<canvas.height - objects.leftPaddle.height){
+                                objects.leftPaddle.y = objects.leftPaddle.y + 10;
+                            }
+                        }
+
                     });
                     document.addEventListener('keyup', (e) => {
                         // fill in here
+                        if(e == 'w'){
+                             
+                        }
+                        
                     });
                 },
                 loop: (_) => {
                     // clear canvas
                     canvas.context.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    canvas.context.fillStyle = 'rgb(200, 200, 200)';
+                    canvas.context.fillRect(objects.leftPaddle.x, objects.leftPaddle.y, objects.leftPaddle.width, objects.leftPaddle.height);
+                    canvas.context.fillRect(objects.rightPaddle.x, objects.rightPaddle.y, objects.rightPaddle.width, objects.rightPaddle.height);
+                    canvas.context.fillRect(objects.ball.x, objects.ball.y, objects.ball.width, objects.ball.height);
 
+                    objects.ball.x = objects.ball.x - objects.ball.dx;
+                    objects.ball.y = objects.ball.y - objects.ball.dy;
                     // TODO: implement game loop
                     // move paddles by their velocity
                     // prevent paddles from going through walls
