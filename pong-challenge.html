@@ -102,8 +102,7 @@
                                 objects.rightPaddle.y = objects.rightPaddle.y + 10;
                             }
                             
-                        }
-                        
+                        }                       
 
 
                         if(e.keyCode == "87"){ //w key
@@ -150,6 +149,25 @@
                     // draw walls
                     // draw dotted line down the middle
                     // more features...
+
+                    //check if ball colides with edges 
+                    //if 10 from edge edge dy*-1
+                    if((canvas.height-objects.ball.y<10) ||(objects.ball.y< 10) ){
+                        objects.ball.dy=-1*objects.ball.dy;
+                    }
+                    
+                    //paddle ball colision
+                    if(game.c(objects.ball,objects.leftPaddle)||game.c(objects.ball,objects.rightPaddle)){
+                        objects.ball.dx=-1*objects.ball.dx;
+                    }
+
+                    //resetting ball
+                    if((canvas.width-objects.ball.x<10) ||(objects.ball.x< 10) ){
+                        objects.ball.x = canvas.width / 2;
+                        objects.ball.y = canvas.height / 2;
+                        objects.ball.dx=-1*objects.ball.dx;
+                    }
+
 
                     window.requestAnimationFrame(game.loop);
                 },
