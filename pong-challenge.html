@@ -47,14 +47,14 @@
                     y: canvas.height / 2 - config.paddleHeight / 2,
                     width: config.gridSize,
                     height: config.paddleHeight,
-                    dy: 0,
+                    dy: 5,
                 },
                 rightPaddle: {
                     x: canvas.width - config.gridSize * 3,
                     y: canvas.height / 2 - config.paddleHeight / 2,
                     width: config.gridSize,
                     height: config.paddleHeight,
-                    dy: 0,
+                    dy: 5,
                 },
                 ball: {
                     x: canvas.width / 2,
@@ -90,16 +90,16 @@
                     // TODO: key listener events
                     document.addEventListener('keydown', (e) => {
                         // fill in here
-
+                        paddlespeed = 25;
                         if(e.keyCode == "38"){ //up arrow
                             if(objects.rightPaddle.y>10){
-                                objects.rightPaddle.y = objects.rightPaddle.y - 10;
+                                objects.rightPaddle.y = objects.rightPaddle.y - paddlespeed;
                             } 
                         }
 
                         if(e.keyCode == "40"){ //down arrow
                             if(objects.rightPaddle.y<canvas.height - objects.rightPaddle.height){
-                                objects.rightPaddle.y = objects.rightPaddle.y + 10;
+                                objects.rightPaddle.y = objects.rightPaddle.y + paddlespeed;
                             }
                             
                         }                       
@@ -107,13 +107,13 @@
 
                         if(e.keyCode == "87"){ //w key
                             if(objects.leftPaddle.y>10){
-                                objects.leftPaddle.y = objects.leftPaddle.y - 10;
+                                objects.leftPaddle.y = objects.leftPaddle.y - paddlespeed;
                             }
                             
                         }
                         if(e.keyCode == "83"){ //s key
                             if(objects.leftPaddle.y<canvas.height - objects.leftPaddle.height){
-                                objects.leftPaddle.y = objects.leftPaddle.y + 10;
+                                objects.leftPaddle.y = objects.leftPaddle.y + paddlespeed;
                             }
                         }
 
